@@ -6,23 +6,36 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		12197D2F2D31FD7700C7A19D /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12197D2D2D31FD7700C7A19D /* HealthKitUI.framework */; platformFilters = (ios, xros, ); };
+		12197D302D31FD7700C7A19D /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12197D2E2D31FD7700C7A19D /* HealthKit.framework */; };
+		12197D3D2D323F1900C7A19D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12197D342D323F1900C7A19D /* Preview Assets.xcassets */; };
+		12197D3E2D323F1900C7A19D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12197D372D323F1900C7A19D /* Assets.xcassets */; };
+		12197D402D323F1900C7A19D /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12197D382D323F1900C7A19D /* RootView.swift */; };
+		12197D412D323F1900C7A19D /* HealthKitTestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12197D3A2D323F1900C7A19D /* HealthKitTestApp.swift */; };
+		12197D442D323F3500C7A19D /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12197D432D323F3400C7A19D /* HealthKitManager.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		12197D1A2D31FCB100C7A19D /* HealthKitTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthKitTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		12197D2D2D31FD7700C7A19D /* HealthKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKitUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/HealthKitUI.framework; sourceTree = DEVELOPER_DIR; };
+		12197D2E2D31FD7700C7A19D /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
+		12197D342D323F1900C7A19D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		12197D372D323F1900C7A19D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		12197D382D323F1900C7A19D /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		12197D392D323F1900C7A19D /* HealthKitTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HealthKitTest.entitlements; sourceTree = "<group>"; };
+		12197D3A2D323F1900C7A19D /* HealthKitTestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitTestApp.swift; sourceTree = "<group>"; };
+		12197D3B2D323F1900C7A19D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		12197D432D323F3400C7A19D /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		12197D1C2D31FCB100C7A19D /* HealthKitTest */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = HealthKitTest;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		12197D172D31FCB100C7A19D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12197D2F2D31FD7700C7A19D /* HealthKitUI.framework in Frameworks */,
+				12197D302D31FD7700C7A19D /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -32,7 +45,8 @@
 		12197D112D31FCB100C7A19D = {
 			isa = PBXGroup;
 			children = (
-				12197D1C2D31FCB100C7A19D /* HealthKitTest */,
+				12197D3C2D323F1900C7A19D /* HealthKitTest */,
+				12197D2C2D31FD7600C7A19D /* Frameworks */,
 				12197D1B2D31FCB100C7A19D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,6 +57,53 @@
 				12197D1A2D31FCB100C7A19D /* HealthKitTest.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		12197D2C2D31FD7600C7A19D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				12197D2E2D31FD7700C7A19D /* HealthKit.framework */,
+				12197D2D2D31FD7700C7A19D /* HealthKitUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		12197D352D323F1900C7A19D /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				12197D342D323F1900C7A19D /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		12197D362D323F1900C7A19D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				12197D3A2D323F1900C7A19D /* HealthKitTestApp.swift */,
+				12197D382D323F1900C7A19D /* RootView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		12197D3C2D323F1900C7A19D /* HealthKitTest */ = {
+			isa = PBXGroup;
+			children = (
+				12197D3B2D323F1900C7A19D /* Info.plist */,
+				12197D392D323F1900C7A19D /* HealthKitTest.entitlements */,
+				12197D362D323F1900C7A19D /* View */,
+				12197D422D323F2C00C7A19D /* Manager */,
+				12197D372D323F1900C7A19D /* Assets.xcassets */,
+				12197D352D323F1900C7A19D /* Preview Content */,
+			);
+			path = HealthKitTest;
+			sourceTree = "<group>";
+		};
+		12197D422D323F2C00C7A19D /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				12197D432D323F3400C7A19D /* HealthKitManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -59,9 +120,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				12197D1C2D31FCB100C7A19D /* HealthKitTest */,
 			);
 			name = HealthKitTest;
 			packageProductDependencies = (
@@ -109,6 +167,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12197D3D2D323F1900C7A19D /* Preview Assets.xcassets in Resources */,
+				12197D3E2D323F1900C7A19D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +179,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12197D402D323F1900C7A19D /* RootView.swift in Sources */,
+				12197D412D323F1900C7A19D /* HealthKitTestApp.swift in Sources */,
+				12197D442D323F3500C7A19D /* HealthKitManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +315,10 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HealthKitTest/Info.plist;
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "アプリ内から臨床データを取得します";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "アプリ内からヘルスケアデータを取得します";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "アプリ内からヘルスケアデータを保存します";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -270,10 +337,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ame.HealthKitTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = 1;
 				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
@@ -291,6 +359,10 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HealthKitTest/Info.plist;
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "アプリ内から臨床データを取得します";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "アプリ内からヘルスケアデータを取得します";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "アプリ内からヘルスケアデータを保存します";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -309,10 +381,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ame.HealthKitTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = 1;
 				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;

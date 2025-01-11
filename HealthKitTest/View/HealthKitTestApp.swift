@@ -11,7 +11,7 @@ import SwiftUI
 struct HealthKitTestApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView()
         }
     }
 }
