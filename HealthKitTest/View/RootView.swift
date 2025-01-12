@@ -11,6 +11,9 @@ struct RootView: View {
     private let healthKitManager = HealthKitManager()
     var body: some View {
         VStack {
+            
+            Text("昨日の消費カロリー：\(healthKitManager.kilocalorie)kcal")
+            
             Button {
                 Task {
                     await healthKitManager.requestAuthorization()
@@ -23,7 +26,7 @@ struct RootView: View {
             Button {
                 healthKitManager.reading()
             } label: {
-                Text("読み取り")
+                Text("消費カロリー読み取り")
             }
         }
         .padding()
