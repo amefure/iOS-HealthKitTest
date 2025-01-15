@@ -9,9 +9,9 @@ import HealthKit
 
 class WorkoutManager: ObservableObject {
     
-    
-    @Published var isStart = false
-    @Published var isError = false
+    @Published var isWorkoutActive: Bool = false
+    @Published var isError: Bool = false
+    @Published var log: String = ""
     private let healthStore = HKHealthStore()
     private var session: HKWorkoutSession?
     private var builder: HKLiveWorkoutBuilder?
@@ -77,24 +77,25 @@ class WorkoutManager: ObservableObject {
             guard let self else { return }
             
             guard success else {
-                // Handle errors.
                 self.isError = true
-
-                print("ワークアウト開始失敗：", error)
+                log.append("ワークアウト開始失敗\n")
+                log.append("Error：\(error as Any)\n")
                 return
             }
-            self.isStart = true
-            print("ワークアウト開始成功")
+            self.isWorkoutActive = true
+            log.append("ワークアウト開始成功\n")
         }
     }
     
     public func stop() {
-        self.isStart = false
+        log.append("中断\n")
+        self.isWorkoutActive = false
         session?.pause()
     }
     
     public func resume() {
-        self.isStart = true
+        log.append("再開\n")
+        self.isWorkoutActive = true
         session?.resume()
     }
     
@@ -104,7 +105,9 @@ class WorkoutManager: ObservableObject {
             guard let self else { return }
             
             guard success else {
-                print("ワークアウト終了失敗：", error)
+                self.isError = true
+                log.append("ワークアウト終了失敗\n")
+                log.append("Error：\(error as Any)\n")
                 return
             }
             
@@ -112,13 +115,18 @@ class WorkoutManager: ObservableObject {
                 guard let self else { return }
                 
                 guard workout != nil else {
-                    print("ワークアウト終了失敗：", error)
+                    self.isError = true
+                    log.append("ワークアウト終了失敗\n")
+                    log.append("Error：\(error as Any)\n")
                     return
                 }
 
-                print("ワークアウト終了")
+                log.append("ワークアウト終了成功\n")
+                self.isWorkoutActive = false
             }
         }
+        session = nil
+        builder = nil
     }
 }
 

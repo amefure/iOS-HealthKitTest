@@ -8,48 +8,47 @@
 import SwiftUI
 
 struct RootView: View {
-    @ObservedObject var healthKitManager = WorkoutManager()
+    @StateObject private var healthKitManager = WorkoutManager()
     
     var body: some View {
-        VStack {
+        List {
+            
+            Text(healthKitManager.log)
+            
+            if healthKitManager.isError {
+                Text("ERROR")
+                    .foregroundStyle(.red)
+            }
+            
             Button {
                 healthKitManager.start()
                 
             } label: {
-                Text(healthKitManager.isStart ? "NOW" : "START")
-            }
+                Text(healthKitManager.isWorkoutActive ? "Workout中" : "START")
+            }.disabled(healthKitManager.isWorkoutActive)
             
             Button {
-                if healthKitManager.isStart {
+                if healthKitManager.isWorkoutActive {
                     healthKitManager.stop()
-                    healthKitManager.isStart = false
                 } else {
                     healthKitManager.resume()
-                    healthKitManager.isStart = true
                 }
-                
-               
             } label: {
-                Text(healthKitManager.isStart ? "STOP" : "resume")
+                Text(healthKitManager.isWorkoutActive ? "STOP" : "再開")
             }
-            
             
             Button {
                 healthKitManager.end()
             } label: {
                 Text("END")
-            }
+            }.disabled(!healthKitManager.isWorkoutActive)
             
-            
-        }
-        .padding()
-        .onAppear {
-            print("---onAppear")
-            Task {
-                await healthKitManager.requestAuthorization()
+        }.padding()
+            .onAppear {
+                Task {
+                    await healthKitManager.requestAuthorization()
+                }
             }
-           
-        }
     }
 }
 
