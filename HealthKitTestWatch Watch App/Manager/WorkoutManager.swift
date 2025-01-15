@@ -7,15 +7,19 @@
 
 import HealthKit
 
-class WorkoutManager: ObservableObject {
+class WorkoutManager: NSObject, ObservableObject {
     
-    @Published var isWorkoutActive: Bool = false
-    @Published var isError: Bool = false
-    @Published var log: String = ""
+    @Published private(set) var isWorkoutActive: Bool = false
+    @Published private(set) var isError: Bool = false
+    @Published private(set) var log: String = ""
+    
     private let healthStore = HKHealthStore()
     private var session: HKWorkoutSession?
     private var builder: HKLiveWorkoutBuilder?
 
+    public func resetLog() {
+        log = ""
+    }
     
     /// 書き込み許可申請項目
     public let writeAllTypes: Set = [
@@ -63,8 +67,8 @@ class WorkoutManager: ObservableObject {
             session = try HKWorkoutSession(healthStore: healthStore, configuration: configuration)
             builder = session?.associatedWorkoutBuilder()
             
-//            session.delegate = self
-//            builder.delegate = self
+            session?.delegate = self
+            builder?.delegate = self
             
             builder?.dataSource = HKLiveWorkoutDataSource(healthStore: healthStore, workoutConfiguration: configuration)
         } catch {
@@ -139,3 +143,24 @@ class WorkoutManager: ObservableObject {
     }
 }
 
+
+extension WorkoutManager: HKWorkoutSessionDelegate {
+    /// セッションの状態が変化した際に呼ばれる
+    func workoutSession(_ workoutSession: HKWorkoutSession, didChangeTo toState: HKWorkoutSessionState, from fromState: HKWorkoutSessionState, date: Date) {
+        self.log.append("セッション状態変化：\(toState)\n")
+        self.log.append("セッション状態変化：\(fromState)\n")
+    }
+    /// セッションがエラーで失敗した際に呼ばれる
+    func workoutSession(_ workoutSession: HKWorkoutSession, didFailWithError error: any Error) {
+        self.log.append("セッションエラー：\(error)\n")
+    }
+}
+
+extension WorkoutManager: HKLiveWorkoutBuilderDelegate {
+    /// ヘルスケアデータが追加された際に呼ばれる
+    func workoutBuilder(_ workoutBuilder: HKLiveWorkoutBuilder, didCollectDataOf collectedTypes: Set<HKSampleType>) {
+    }
+    /// イベントが追加された際に呼ばれる
+    func workoutBuilderDidCollectEvent(_ workoutBuilder: HKLiveWorkoutBuilder) {
+    }
+}

@@ -43,6 +43,12 @@ struct RootView: View {
                 Text("END")
             }.disabled(!healthKitManager.isWorkoutActive)
             
+            Button {
+                healthKitManager.resetLog()
+            } label: {
+                Text("ログリセット")
+            }
+            
         }.padding()
             .onAppear {
                 Task {
