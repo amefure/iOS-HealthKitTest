@@ -68,7 +68,6 @@ class WorkoutManager: ObservableObject {
             
             builder?.dataSource = HKLiveWorkoutDataSource(healthStore: healthStore, workoutConfiguration: configuration)
         } catch {
-            // Handle failure here.
             return
         }
         let startDate = Date()
@@ -77,37 +76,44 @@ class WorkoutManager: ObservableObject {
             guard let self else { return }
             
             guard success else {
-                self.isError = true
-                log.append("ワークアウト開始失敗\n")
-                log.append("Error：\(error as Any)\n")
+                DispatchQueue.main.async {
+                    self.isError = true
+                    self.log.append("ワークアウト開始失敗\n")
+                    self.log.append("Error：\(error as Any)\n")
+                }
                 return
             }
-            self.isWorkoutActive = true
-            log.append("ワークアウト開始成功\n")
+            DispatchQueue.main.async {
+                self.isWorkoutActive = true
+                self.log.append("ワークアウト開始成功\n")
+            }
         }
     }
     
     public func stop() {
         log.append("中断\n")
-        self.isWorkoutActive = false
+        isWorkoutActive = false
         session?.pause()
     }
     
     public func resume() {
         log.append("再開\n")
-        self.isWorkoutActive = true
+        isWorkoutActive = true
         session?.resume()
     }
     
     public func end() {
+        log.append("終了処理開始\n")
         session?.end()
         builder?.endCollection(withEnd: Date()) { [weak self] (success, error) in
             guard let self else { return }
             
             guard success else {
-                self.isError = true
-                log.append("ワークアウト終了失敗\n")
-                log.append("Error：\(error as Any)\n")
+                DispatchQueue.main.async {
+                    self.isError = true
+                    self.log.append("ワークアウト終了失敗\n")
+                    self.log.append("Error：\(error as Any)\n")
+                }
                 return
             }
             
@@ -115,14 +121,17 @@ class WorkoutManager: ObservableObject {
                 guard let self else { return }
                 
                 guard workout != nil else {
-                    self.isError = true
-                    log.append("ワークアウト終了失敗\n")
-                    log.append("Error：\(error as Any)\n")
+                    DispatchQueue.main.async {
+                        self.isError = true
+                        self.log.append("ワークアウト終了失敗\n")
+                        self.log.append("Error：\(error as Any)\n")
+                    }
                     return
                 }
-
-                log.append("ワークアウト終了成功\n")
-                self.isWorkoutActive = false
+                DispatchQueue.main.async {
+                    self.log.append("ワークアウト終了成功\n")
+                    self.isWorkoutActive = false
+                }
             }
         }
         session = nil
